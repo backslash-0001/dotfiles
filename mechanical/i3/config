@@ -1,0 +1,219 @@
+# ██╗██████╗  ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗ 
+# ██║╚════██╗██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝ 
+# ██║ █████╔╝██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗
+# ██║ ╚═══██╗██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║
+# ██║██████╔╝╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
+# ╚═╝╚═════╝  ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝ 
+
+# >> Initialisation
+
+set $mod    Mod4
+set $super  bindsym Mod4
+set $sucod  bindcode Mod4
+set $exe    exec --no-startup-id
+set $exeal  exec_always --no-startup-id
+
+font pango:IBM 3270 10
+
+focus_follows_mouse yes
+
+floating_modifier $mod
+
+# >> Gaps
+
+gaps inner 10
+gaps outer 15
+
+# >> Borders
+
+for_window [class="^.*"] border pixel 2
+
+# >> Panic
+
+$super+Shift+q kill
+$super+Shift+r restart
+$super+Shift+x $exe i3lock -i /home/rwmitch/Pictures/wallpaper2.png
+$super+Shift+e $exe "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+$super+Escape $exe rofi_run -l
+
+# >> Quick Launch
+
+$super+Return $exe i3pgms
+$super+Shift+Return $exe kitty
+
+# >> Launcher
+
+$super+d $exe rofi_run
+
+# >> Window Switcher
+
+$super+Tab $exe rofi -show window
+
+# >> Focus 
+
+$super+Left focus left
+$super+Right focus right
+$super+Up focus up
+$super+Down focus down
+
+# >> Move Position
+
+$super+Shift+Left move left
+$super+Shift+Right move right
+$super+Shift+Up move up
+$super+Shift+Down move down
+
+# >> Resizing
+
+mode "resize" {
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+r mode "default"
+}
+
+$super+r mode "resize"
+
+# >> Workspace Names
+
+set $ws1 "1: TE"
+set $ws2 "2: FF"
+set $ws3 "3: GC"
+set $ws4 "4: NA"
+set $ws5 "5: VS"
+set $ws6 "6: PM"
+set $ws7 "7: VM"
+set $ws8 "8: SP"
+set $ws9 "9: DS"
+set $ws10 "10"
+set $ws11 "11"
+set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
+set $ws15 "15"
+set $ws16 "16"
+set $ws17 "17"
+set $ws18 "18"
+set $ws19 "19"
+set $ws20 "20"
+
+# >> Switch Workspace
+
+$super+1 workspace $ws1
+$super+2 workspace $ws2
+$super+3 workspace $ws3
+$super+4 workspace $ws4
+$super+5 workspace $ws5
+$super+6 workspace $ws6
+$super+7 workspace $ws7
+$super+8 workspace $ws8
+$super+9 workspace $ws9
+$super+0 workspace $ws10
+$super+Control+1 workspace $ws11
+$super+Control+2 workspace $ws12
+$super+Control+3 workspace $ws13
+$super+Control+4 workspace $ws14
+$super+Control+5 workspace $ws15
+$super+Control+6 workspace $ws16
+$super+Control+7 workspace $ws17
+$super+Control+8 workspace $ws18
+$super+Control+9 workspace $ws19
+$super+Control+0 workspace $ws20
+
+# >> Move Window to Workspace
+
+$super+Shift+1 move container to workspace $ws1
+$super+Shift+2 move container to workspace $ws2
+$super+Shift+3 move container to workspace $ws3
+$super+Shift+4 move container to workspace $ws4
+$super+Shift+5 move container to workspace $ws5
+$super+Shift+6 move container to workspace $ws6
+$super+Shift+7 move container to workspace $ws7
+$super+Shift+8 move container to workspace $ws8
+$super+Shift+9 move container to workspace $ws9
+$super+Shift+0 move container to workspace $ws10
+$super+Shift+Control+1 move container to workspace $ws11
+$super+Shift+Control+2 move container to workspace $ws12
+$super+Shift+Control+3 move container to workspace $ws13
+$super+Shift+Control+4 move container to workspace $ws14
+$super+Shift+Control+5 move container to workspace $ws15
+$super+Shift+Control+6 move container to workspace $ws16
+$super+Shift+Control+7 move container to workspace $ws17
+$super+Shift+Control+8 move container to workspace $ws18
+$super+Shift+Control+9 move container to workspace $ws19
+$super+Shift+Control+0 move container to workspace $ws20
+
+# >> Assign Workspaces
+
+assign [class="Firefox"] $ws2
+assign [class="Chromium"] $ws3
+assign [class="Nautilus"] $ws4
+assign [class="code-oss"] $ws5
+assign [class="Postman"] $ws6
+assign [class="VirtualBox Manager"] $ws7
+assign [class="VirtualBox Machine"] $ws7
+for_window [class="Spotify"] move to workspace $ws8
+assign [class="discord"] $ws9
+
+# >> Switch Window Modes
+
+$super+F1 layout toggle split
+$super+F2 layout tabbed
+$super+F3 layout stacking
+$super+F4 fullscreen toggle
+$super+F5 floating toggle
+$super+F6 sticky toggle
+
+# >> Switch Split Direction
+
+$sucod+95 split h 
+$sucod+96 split v
+
+# >> Media Keybindings
+
+$super+p $exe "sp toggle"
+$sucod+34 $exe "sp prev"
+$sucod+35 $exe "sp next"
+
+bindsym XF86AudioMute $exe "pamixer -t"
+bindsym XF86AudioLowerVolume $exe "pamixer -d 5"
+bindsym XF86AudioRaiseVolume $exe "pamixer -i 5"
+
+bindsym XF86MonBrightnessDown $exe xbacklight -dec 5
+bindsym XF86MonBrightnessUp $exe xbacklight -inc 5
+
+# >> Startup Programs
+
+$exe spotify
+$exe discord
+$exe dunst
+$exeal compton --config /home/rwmitch/.config/compton.conf --blur-method kawase
+$exeal feh --bg-scale $HOME/dotfiles/mechanical/walls/keyboards.jpg
+# $exeal /home/rwmitch/.config/polybar/launch.sh
+$exeal xinput set-prop 13 "libinput Tapping Enabled" 1
+$exeal xinput set-prop 13 "libinput Accel Speed" 0.3
+$exe xbacklight -set 50
+$exeal compton
+
+
+
+
+
+
+
+
+# >> Notes
+
+# Workspaces:
+  # 1,2,3,4
+  # Terminal
+  # Firefox
+  # Chrome
+  # VSCode
+  # Spotify
+  # Discord
+
